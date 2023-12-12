@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lazy_loading_flutter/heavy_widget.dart';
+import 'package:get/get.dart';
+import 'package:lazy_loading_flutter/presentation/manager/navigation_manager.dart';
+import 'package:lazy_loading_flutter/presentation/views/heavy_widget.dart';
 import 'box.dart' deferred as box; // Import deferred
-import 'heavy_widget.dart' deferred as heavy_widget;
+ import 'heavy_widget.dart' deferred as heavy_widget;
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -28,12 +30,15 @@ class Home extends StatelessWidget {
           ElevatedButton(
             child: const Text('Load Heavy Widget'),
             onPressed: () async {
+
               await heavy_widget.loadLibrary();
-              final heavyWidget = heavy_widget.HeavyWidgetPage();
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => heavyWidget),
-              );
+               final heavyWidget = heavy_widget.HeavyWidgetPage();
+              //  Get.to(() => heavyWidget);
+              //  Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => heavyWidget),
+              //   );
+            NavigationManager.gotoHeavyWidget();
             },
           ),
         ],
